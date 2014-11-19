@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name insightwebappApp.controller:MainCtrl
+ * @name insightExplorer.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the insightwebappApp
+ * Controller of the insightExplorer
  */
-angular.module('insightwebappApp')
+angular.module('insightExplorer')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
