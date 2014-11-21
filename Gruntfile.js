@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/charts/{,*/}*.js',
                 '<%= yeoman.app %>/*.js'
         ],
-        tasks: ['newer:jshint:all'],
+        tasks: ['newer:jshint:all', 'karma'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -373,17 +373,14 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
-  });
-
   grunt.registerTask('test', [
+    'newer:jshint',
     'clean:server',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma',
+    'watch'
   ]);
 
   grunt.registerTask('build', [
@@ -404,7 +401,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
     'test',
     'build'
   ]);
