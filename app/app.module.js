@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name insightExplorerApp
+ * @name insightExplorer
  * @description
- * # insightExplorerApp
+ * # insightExplorer
  *
  * Main module of the application.
  */
 angular
-  .module('insightExplorerApp', [
+  .module('insightExplorer', [
     'ngAnimate',
     'ngResource',
     'ngRoute'
