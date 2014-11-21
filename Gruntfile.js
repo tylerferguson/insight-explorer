@@ -379,9 +379,18 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma',
-    'watch'
+    'karma'
   ]);
+
+    grunt.registerTask('test-watch', [
+        'newer:jshint',
+        'clean:server',
+        'concurrent:test',
+        'autoprefixer',
+        'connect:test',
+        'karma',
+        'watch'
+    ]);
 
   grunt.registerTask('build', [
     'clean:dist',
