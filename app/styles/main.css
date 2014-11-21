@@ -1,6 +1,14 @@
-.header {
+.navbar-default {
     background-color: #3182bd;
-    height: 50px;
+    border-color: white;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.buttons {
+    margin-top: 5px;
 }
 
 .sidebar {
