@@ -34,10 +34,10 @@
                         </a>
                     </div>
                     <div class="buttons-container">
-                        <ul class="nav nav-pills nav-bar">
-                            <li class="active"><a ng-href="#">Home</a></li>
-                            <li><a ng-href="#/about">About</a></li>
-                            <li><a ng-href="#">Contact</a></li>
+                        <ul class="nav nav-pills nav-bar" ng-controller="NavCtrl">
+                            <li ><a ng-href="#" ng-click="toggleSelect($event)" ng-blur="toggleSelect($event)">Home</a></li>
+                            <li ><a ng-href="#/about" ng-click="toggleSelect($event)" ng-blur="toggleSelect($event)">About</a></li>
+                            <li ><a ng-href="#" ng-click="toggleSelect($event)" ng-blur="toggleSelect($event)">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -75,6 +75,7 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="app.module.js"></script>
         <script src="charts/main.controller.js"></script>
+        <script src="navbar/navbar.controller.js"></script>
         <!-- endbuild -->
     </body>
 </html>
