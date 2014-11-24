@@ -7,6 +7,15 @@
     margin-bottom: 0;
 }
 
+.nav-pills > li > a {
+    color: white;
+}
+
+.nav-pills > li > a:hover {
+    background-color: #bdd7e7;
+    color: white;
+}
+
 .buttons-container {
     margin-left: 5px;
     margin-top: 5px;
