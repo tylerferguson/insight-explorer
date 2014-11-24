@@ -33,11 +33,11 @@
                             <img alt="Brand" src="./images/InsightBanner.png">
                         </a>
                     </div>
-                    <div class="buttons-container">
-                        <ul class="nav nav-pills nav-bar" ng-controller="NavCtrl">
-                            <li ><a ng-href="#" ng-click="toggleSelect($event)" ng-blur="toggleSelect($event)">Home</a></li>
-                            <li ><a ng-href="#/about" ng-click="toggleSelect($event)" ng-blur="toggleSelect($event)">About</a></li>
-                            <li ><a ng-href="#" ng-click="toggleSelect($event)" ng-blur="toggleSelect($event)">Contact</a></li>
+                    <div class="buttons-container" ng-controller="NavCtrl">
+                        <ul class="nav nav-pills nav-bar" >
+                            <li ng-class="{active: isActive('')}"><a ng-href="/">Home</a></li>
+                            <li ng-class="{active: isActive('/about')}"><a ng-href="#/about">About</a></li>
+                            <li ng-class="{active: isActive('/contact')}"><a ng-href="#/contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>

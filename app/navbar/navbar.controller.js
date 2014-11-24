@@ -2,12 +2,10 @@
  * Created by tferguson on 24/11/2014.
  */
 
-angular.module('insightExplorer').controller('NavCtrl', function($scope) {
+angular.module('insightExplorer').controller('NavCtrl', ['$scope', '$location' , function($scope, $location) {
 
-    $scope.toggleSelect = function(event) {
+    $scope.isActive = function(location) {
 
-        var button = $(event.target).parent();
-
-        button.toggleClass('active', !(button.hasClass('active')));
+        return location === $location.path();
     }
-});
+}]);
