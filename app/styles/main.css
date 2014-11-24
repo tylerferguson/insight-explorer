@@ -1,20 +1,32 @@
 .navbar-default {
-    background-color: #3182bd;
+    background-color: #323232;
     border-color: white;
+    z-index: -1;
 }
 
 .navbar {
     margin-bottom: 0;
 }
 
-.buttons {
+.buttons-container {
+    margin-left: 5px;
     margin-top: 5px;
+    padding-left: 255px ;
 }
+
+.navbar-brand {
+    padding: 5px;
+}
+
+.navbar-brand > img {
+    height: 40px;
+    width: auto;
+}
+
 
 .sidebar {
     background-color: #bdd7e7;
-    width: 200px;
-    flex-grow: 1;
+    width: 270px;
 }
 
 .wrapper > div {
