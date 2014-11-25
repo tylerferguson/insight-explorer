@@ -8,20 +8,20 @@ angular.module('insightExplorer')
         'use strict';
 
         $routeProvider
-            .when('#', {
-                templateUrl: '',
-                controller: ''
+            .when('/', {
+                templateUrl: 'charts/chart.html',
+                controller: 'MainCtrl'
             })
-            .when('#/about', {
-                templateUrl: '',
-                controller: ''
+            .when('/about', {
+                templateUrl: 'charts/chart.html',
+                controller: 'MainCtrl'
             })
-            .when('#/contact', {
-                templateUrl: '',
-                controller: ''
+            .when('/contact', {
+                templateUrl: 'charts/chart.html',
+                controller: 'MainCtrl'
             })
             .otherwise({
-                redirectTo: '#'
+                redirectTo: '/'
             });
     });
 
