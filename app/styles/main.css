@@ -37,6 +37,14 @@
 .sidebar {
     background-color: #bdd7e7;
     width: 270px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-properties-container {
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapper > div {

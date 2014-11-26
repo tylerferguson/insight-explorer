@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the insightExplorer
  */
-angular.module('insightExplorer').controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
+angular.module('insightExplorer').controller('MainCtrl', ['$scope', function ($scope) {
 
 
     $scope.$on('chartSelected', function(event, args) {
@@ -15,14 +15,12 @@ angular.module('insightExplorer').controller('MainCtrl', ['$scope', '$http', fun
 
         $('#chart').empty();
 
-        $http.get('../data.json')
-            .success( function(data) {
-                console.log('get success!');
-                var chart = new insight[args.chartType](data, '#chart', 'broticity', 'age')
-                    .build();
+        console.log('get success!');
+        var chart = new insight[args.chartType](args.data, '#chart', args.dataProperties[0], args.dataProperties[1])
+            .build();
 
-                chart.draw();
-            });
+        chart.draw();
+
 
 
     });

@@ -47,9 +47,13 @@
             <div class="content">
                 <div class="sidebar" ng-controller="SideCtrl">
                     <h3>Chart Navigation</h3>
-                    <button ng-click="selectChart('SimpleColumnChart')">Column Chart</button>
-                    <button ng-click="selectChart('SimpleRowChart')">Row Chart</button>
-                    <button ng-click="selectChart('SimpleLineChart')">Line Chart</button>
+
+                    <div class="data-properties-container">
+                        <button class="btn btn-default" ng-repeat="dataField in dataFields | filter: filterByDataProperties" ng-click="setProperty(dataField)">{{dataField}}</button>
+                    </div>
+
+                    <button class="btn btn-default" ng-repeat="chart in charts | filter: filterByNumProperties" ng-click="selectChart(chart.type)">{{chart.name}}</button>
+
                 </div>
 
                 <div class="charts">
