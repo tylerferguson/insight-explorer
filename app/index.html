@@ -45,8 +45,11 @@
             </nav>
 
             <div class="content">
-                <div class="sidebar">
+                <div class="sidebar" ng-controller="SideCtrl">
                     <h3>Chart Navigation</h3>
+                    <button ng-click="selectChart('SimpleColumnChart')">Column Chart</button>
+                    <button ng-click="selectChart('SimpleRowChart')">Row Chart</button>
+                    <button ng-click="selectChart('SimpleLineChart')">Line Chart</button>
                 </div>
 
                 <div class="charts">
@@ -80,6 +83,7 @@
         <script src="app.module.js"></script>
         <script src="app.routes.js"></script>
         <script src="charts/main.controller.js"></script>
+        <script src="sidebar/sidebar.controller.js"></script>
         <script src="navbar/navbar.controller.js"></script>
         <!-- endbuild -->
     </body>
