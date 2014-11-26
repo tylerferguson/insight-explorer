@@ -311,7 +311,7 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'charts/{,*/}*.html',
-            'images/{,*/}*.{webp}',
+            'images/{,*/}*.png',
             'fonts/*'
           ]
         }, {
@@ -343,20 +343,20 @@ module.exports = function (grunt) {
         'copy:styles'
       ],
       dist: [
-        'copy:styles',
-        'imagemin',
-        'svgmin'
-      ]
-    },
+        'copy:styles'
+//        'imagemin',
+//        'svgmin'
+    ]
+},
 
     // Test settings
     karma: {
-      unit: {
+    unit: {
         configFile: 'test/karma.conf.js',
-        singleRun: true
-      }
+            singleRun: true
     }
-  });
+}
+});
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
