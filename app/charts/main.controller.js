@@ -11,11 +11,9 @@ angular.module('insightExplorer').controller('MainCtrl', ['$scope', function ($s
 
 
     $scope.$on('chartSelected', function(event, args) {
-        console.log('broadcast success!');
 
         $('#chart').empty();
 
-        console.log('get success!');
         var chart = new insight[args.chartType](args.data, '#chart', args.dataProperties[0], args.dataProperties[1])
             .build();
 

@@ -55,7 +55,6 @@ angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', fun
             data: self.data,
             dataProperties: $scope.dataProperties
         });
-       console.log('binding success!');
     };
 }]);
 
