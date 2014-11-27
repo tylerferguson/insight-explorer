@@ -39,10 +39,12 @@
     width: 270px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.data-properties-container {
+.sidebar-options {
     padding-bottom: 50px;
+    width: 90%;
     display: flex;
     flex-direction: column;
 }

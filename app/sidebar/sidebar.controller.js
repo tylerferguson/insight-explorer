@@ -34,9 +34,18 @@ angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', fun
         return !(value === $scope.dataProperties[0] || value === $scope.dataProperties[1]);
     };
 
-    $scope.filterByNumProperties = function(value) {
+    $scope.filterByChosenProperties = function(value) {
 
-        return value.type === 'SimpleBubbleChart' ? $scope.dataProperties.length >= 3 : $scope.dataProperties.length >= 2;
+        var filterByNumProperties = value.type === 'SimpleBubbleChart' ? $scope.dataProperties.length >= 3 : $scope.dataProperties.length >= 2;
+
+        if (filterByNumProperties) {
+
+            var isOrdinal = !Number(self.data[0][$scope.dataProperties[0]]);
+
+            return isOrdinal ? !(value.type === 'SimpleLineChart' || value.type === 'SimpleScatterChart') : true;
+        }
+
+        return false;
     };
 
     $scope.selectChart = function(chartType) {

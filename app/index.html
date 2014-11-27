@@ -48,11 +48,14 @@
                 <div class="sidebar" ng-controller="SideCtrl">
                     <h3>Chart Navigation</h3>
 
-                    <div class="data-properties-container">
+                    <div class="sidebar-options">
                         <button class="btn btn-default" ng-repeat="dataField in dataFields | filter: filterByDataProperties" ng-click="setProperty(dataField)">{{dataField}}</button>
                     </div>
 
-                    <button class="btn btn-default" ng-repeat="chart in charts | filter: filterByNumProperties" ng-click="selectChart(chart.type)">{{chart.name}}</button>
+                    <div class="sidebar-options">
+                        <button class="btn btn-default" ng-repeat="chart in charts | filter: filterByChosenProperties" ng-click="selectChart(chart.type)">{{chart.name}}</button>
+                    </div>
+
 
                 </div>
 
