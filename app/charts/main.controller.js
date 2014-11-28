@@ -19,7 +19,5 @@ angular.module('insightExplorer').controller('MainCtrl', ['$scope', function ($s
 
         chart.draw();
 
-
-
     });
 }]);
