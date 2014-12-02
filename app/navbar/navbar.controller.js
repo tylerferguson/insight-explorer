@@ -3,38 +3,41 @@
  */
 /*globals Dropbox*/
 
-angular.module('insightExplorer').controller('NavCtrl', ['$scope', '$http', '$location' , function($scope, $http, $location) {
+(function() {
 
     'use strict';
 
-    var options = {
-        success : function(files) {
-            $scope.submitUrl(files[0].link);
-        },
-        linkType: 'direct',
-        extensions: ['.json']
-    };
+    angular.module('insightExplorer').controller('NavCtrl', ['$scope', '$http', '$location' , function ($scope, $http, $location) {
 
-    var button = Dropbox.createChooseButton(options);
-    document.getElementById('dropbox-button').appendChild(button);
+        var options = {
+            success: function (files) {
+                $scope.submitUrl(files[0].link);
+            },
+            linkType: 'direct',
+            extensions: ['.json']
+        };
 
-    $scope.submitUrl = function(url) {
+        var button = Dropbox.createChooseButton(options);
+        document.getElementById('dropbox-button').appendChild(button);
 
-        url = url ? url : $scope.url;
+        $scope.submitUrl = function (url) {
 
-        $http.get(url)
-            .success(function(data) {
-                $scope.$root.$broadcast('dataReceived', {
-                    data: data
+            url = url ? url : $scope.url;
+
+            $http.get(url)
+                .success(function (data) {
+                    $scope.$root.$broadcast('dataReceived', {
+                        data: data
+                    });
                 });
-            });
-    };
+        };
 
 
-    $scope.isActive = function(location) {
+        $scope.isActive = function (location) {
 
-        return location === $location.path();
-    };
+            return location === $location.path();
+        };
 
 
-}]);
+    }]);
+})();
