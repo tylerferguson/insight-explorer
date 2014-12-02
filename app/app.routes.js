@@ -12,11 +12,7 @@ angular.module('insightExplorer')
                 templateUrl: 'charts/chart.html',
                 controller: 'MainCtrl'
             })
-            .when('/about', {
-                templateUrl: 'charts/chart.html',
-                controller: 'MainCtrl'
-            })
-            .when('/contact', {
+            .when('/import', {
                 templateUrl: 'charts/chart.html',
                 controller: 'MainCtrl'
             })

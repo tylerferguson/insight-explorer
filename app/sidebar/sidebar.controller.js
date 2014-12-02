@@ -17,12 +17,13 @@ angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', fun
             $scope.charts = data;
         });
 
-    $http.get('./data.json')
-        .success(function(data) {
-            self.data = data;
+    $scope.$on('dataReceived', function(event, args) {
 
-            $scope.dataFields = Object.keys(data[0]);
-        });
+        self.data = args.data;
+        $scope.dataFields = Object.keys(self.data[0]);
+
+    });
+
 
     $scope.setProperty = function(dataField) {
 

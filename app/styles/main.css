@@ -3,12 +3,33 @@
     border-color: white;
 }
 
+#import-box {
+    margin-left: 20px;
+}
+
+.import-container {
+    display: flex;
+    padding: 10px 10px 0px 10px;
+}
+
+#dropboxButton {
+    margin-top: 3px;
+    margin-right: 20px;
+}
+
 .navbar {
     margin-bottom: 0;
+    color: white;
+    display: flex;
 }
 
 .nav-pills > li > a {
     color: white;
+}
+
+.container-fluid {
+    margin-left:0;
+
 }
 
 .nav-pills > li > a:hover {
