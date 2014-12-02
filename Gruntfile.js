@@ -125,7 +125,7 @@ module.exports = function (grunt) {
           'Gruntfile.js',
           '<%= yeoman.app %>/charts/{,*/}*.js',
           '<%= yeoman.app %>/sidebar/*.js',
-           '<%= yeoman.app %>/navbar/*.js',
+          '<%= yeoman.app %>/navbar/*.js',
           '<%= yeoman.app %>/*.js'
         ]
       },

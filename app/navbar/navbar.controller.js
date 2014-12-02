@@ -16,7 +16,7 @@ angular.module('insightExplorer').controller('NavCtrl', ['$scope', '$http', '$lo
     };
 
     var button = Dropbox.createChooseButton(options);
-    document.getElementById('dropboxButton').appendChild(button);
+    document.getElementById('dropbox-button').appendChild(button);
 
     $scope.submitUrl = function(url) {
 
