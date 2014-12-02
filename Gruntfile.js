@@ -387,7 +387,7 @@ module.exports = function (grunt) {
             },
             pages: {
                 options: {
-                    remote: 'git@github.com:tylerferguson/insight-explorer.git',
+                    remote: 'https://github.com/tylerferguson/insight-explorer.git',
                     branch: 'gh-pages'
                 }
             }
