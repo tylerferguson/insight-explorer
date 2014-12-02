@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class='import-container'  ng-show="isActive('/import')">
+                <div class='import-container'  ng-show="isActive('/import')" ng-cloak>
                     <div id="dropbox-button"></div>
                     <p >or provide your own URL</p>
                     <div id="import-box">
@@ -53,14 +53,12 @@
 
             <div class="content">
                 <div class="sidebar" ng-controller="SideCtrl">
-                    <h3>Chart Navigation</h3>
-
                     <div class="sidebar-options">
-                        <button class="btn btn-default" ng-repeat="dataField in dataFields | filter: filterByDataProperties" ng-click="setProperty(dataField)">{{dataField}}</button>
+                        <button class="btn btn-default" ng-repeat="dataField in dataFields | filter: filterByDataProperties" ng-click="setProperty(dataField)" ng-bind="dataField" ng-cloak></button>
                     </div>
 
                     <div class="sidebar-options">
-                        <button class="btn btn-default" ng-repeat="chart in charts | filter: filterByChosenProperties" ng-click="selectChart(chart.type)">{{chart.name}}</button>
+                        <button class="btn btn-default" ng-repeat="chart in charts | filter: filterByChosenProperties" ng-click="selectChart(chart.type)" ng-bind="chart.name" ng-cloak></button>
                     </div>
 
 
