@@ -1,8 +1,11 @@
 /**
  * Created by tferguson on 03/12/2014.
  */
-
+/*globals element, by */
 describe('angularjs homepage todo list', function() {
+
+    'use strict';
+
     it('should add a todo', function() {
         browser.get('http://www.angularjs.org');
 

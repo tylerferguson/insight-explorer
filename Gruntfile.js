@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                 }
             },
             jsTest: {
-                files: ['test/spec/{,*/}*.js'],
+                files: ['test/**/*.js'],
                 tasks: ['newer:jshint:test', 'karma']
             },
             styles: {
@@ -133,7 +133,7 @@ module.exports = function (grunt) {
                 options: {
                     jshintrc: 'test/.jshintrc'
                 },
-                src: ['test/spec/{,*/}*.js']
+                src: ['test/**/*.js']
             }
         },
 
@@ -384,7 +384,7 @@ module.exports = function (grunt) {
                 },
             all: {
                 options: {
-                    configFile: 'test/protractor_tests/conf.js'
+                    configFile: 'test/protractor.conf.js'
                 }
             }
         },
@@ -411,7 +411,7 @@ module.exports = function (grunt) {
                 var exec = require('child_process').exec;
                 var child;
 
-                child = exec("webdriver-manager start", function (error, stdout, stderr) {
+                child = exec('webdriver-manager start', function (error, stdout, stderr) {
                     sys.print('stdout: ' + stdout);
                     sys.print('stderr: ' + stderr);
                     if (error !== null) {
@@ -425,13 +425,13 @@ module.exports = function (grunt) {
                 var exec = require('child_process').exec;
                 var child;
 
-                child = exec("curl http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer", function (error, stdout, stderr) {
+                child = exec('curl http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer', function (error, stdout, stderr) {
                     sys.print('stdout: ' + stdout);
                     sys.print('stderr: ' + stderr);
                     if (error !== null) {
                         console.log('exec error: ' + error);
                     }
-                })
+                });
             }
         }
     });
