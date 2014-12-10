@@ -14,19 +14,13 @@
         $scope.dataProperties = [];
         $scope.charts = [];
         $scope.selected = [];
+
         self.prop = 0;
 
         $http.get('sidebar/charts.json')
             .success(function (data) {
                 $scope.charts = data;
             });
-
-        $scope.$on('dataReceived', function (event, args) {
-
-            self.data = args.data;
-            $scope.dataFields = Object.keys(self.data[0]);
-
-        });
 
         var setProperty = function (dataField) {
 
@@ -108,6 +102,13 @@
                 dataProperties: $scope.dataProperties
             });
         };
+
+        $scope.$on('dataReceived', function (event, args) {
+
+            self.data = args.data;
+            $scope.dataFields = Object.keys(self.data[0]);
+
+        });
     }]);
 })();
 
