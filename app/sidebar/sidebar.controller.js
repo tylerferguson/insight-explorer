@@ -14,7 +14,7 @@
         $scope.dataProperties = [];
         $scope.charts = [];
         $scope.selected = [];
-        $scope.prop = 0;
+        self.prop = 0;
 
         $http.get('sidebar/charts.json')
             .success(function (data) {
@@ -39,32 +39,32 @@
 
         };
 
-        var selectProperty = function(item, prop) {
+        var selectProperty = function(item) {
             $scope.selected[item] = {
                 item: item,
-                prop: prop
+                prop: self.prop
             };
-            $scope.prop++;
+            self.prop++;
         };
 
         var deselectProperty = function(item) {
 
-        $scope.selected.forEach(function(element) {
-            if (element.prop > $scope.selected[item].prop) {
-                $scope.selected[element.item] = {};
-                $scope.prop--;
-            }
-        });
-        $scope.selected[item] = {};
-        $scope.prop--;
+            $scope.selected.forEach(function(element) {
+                if (element.prop > $scope.selected[item].prop) {
+                    $scope.selected[element.item] = {};
+                    self.prop--;
+                }
+            });
+            $scope.selected[item] = {};
+            self.prop--;
 
         };
 
-        $scope.select = function(item, prop, dataField) {
+        $scope.select = function(item, dataField) {
 
             if($.isEmptyObject(($scope.selected[item]))) {
 
-                selectProperty(item, prop);
+                selectProperty(item);
                 setProperty(dataField);
             } else {
 
