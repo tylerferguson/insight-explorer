@@ -34,9 +34,9 @@
         };
 
         var removeProperty = function(item) {
-            $scope.dataProperties.splice(item, 1);
 
-            console.log( $scope.dataProperties);
+            $scope.dataProperties.splice($scope.selected[item].prop);
+
         };
 
         var selectProperty = function(item, prop) {
@@ -49,25 +49,18 @@
 
         var deselectProperty = function(item) {
 
-            if ($scope.selected[item].prop < 2 ) {
-
-                var toUnselect = $scope.selected.filter(function(element) {
-                    return element.prop > $scope.selected[item].prop;
-                });
-
-                if (toUnselect[0]) {
-                    deselectProperty(toUnselect[0].item);
-                }
+        $scope.selected.forEach(function(element) {
+            if (element.prop > $scope.selected[item].prop) {
+                $scope.selected[element.item] = {};
+                $scope.prop--;
             }
-
-            $scope.selected[item] = {};
-            $scope.prop--;
+        });
+        $scope.selected[item] = {};
+        $scope.prop--;
 
         };
 
         $scope.select = function(item, prop, dataField) {
-
-            console.log(arguments);
 
             if($.isEmptyObject(($scope.selected[item]))) {
 
@@ -75,9 +68,8 @@
                 setProperty(dataField);
             } else {
 
-                deselectProperty(item);
                 removeProperty(item);
-
+                deselectProperty(item);
             }
 
         };
@@ -92,11 +84,6 @@
             }
 
 
-        };
-
-        $scope.filterByChosenProperties = function () {
-
-            return $scope.dataProperties.length >= 2;
         };
 
         $scope.enableByChosenProperties = function (value) {
