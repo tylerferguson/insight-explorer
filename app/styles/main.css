@@ -19,6 +19,7 @@
 
 .btn {
     display: flex;
+    flex-grow: 1;
     background-color: #f8f8f8;
     margin: 2px;
 }
@@ -27,10 +28,32 @@
 .btn > .glyphicon {
     top: 2px;
     width: 20px;
+    color: rgba(0, 0, 0, 0.46);
 }
 
 .dataField {
     flex-grow: 1;
+}
+
+.property {
+    display: flex;
+}
+
+.property-options {
+    background-color: rgba(128, 128, 128, 0.27);
+    position: absolute;
+    width: 200px;
+}
+
+.options-transition {
+    transition: .25s linear all;
+    transform: translateX(25px);
+    opacity: 1;
+}
+
+.options-transition.ng-hide {
+    transform: translateX(-239px);
+    opacity: 0;
 }
 
 .keySelected {
@@ -82,7 +105,6 @@
     width: auto;
 }
 
-
 .sidebar {
     background-color: #bdd7e7;
     width: 270px;
@@ -91,10 +113,13 @@
     align-items: center;
 }
 
-.sidebar-options {
+.sidebar-options-container {
+    width: 90%;
     padding-top: 50px;
     padding-bottom: 50px;
-    width: 90%;
+}
+
+.sidebar-options {
     display: flex;
     flex-direction: column;
 }
@@ -121,60 +146,60 @@
 }
 
 .header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
 }
 
 /* Custom page footer */
 .footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
 }
 
 /* Customize main container */
 @media (min-width: 768px) {
-  .main-container {
-      flex-grow: 5;
+    .main-container {
+        flex-grow: 5;
 
-  }
+    }
 }
 .main-container-narrow > hr {
-  margin: 30px 0;
+    margin: 30px 0;
 
 }
 
 /* Main marketing message and sign up button */
 .jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
 }
 .jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+    font-size: 21px;
+    padding: 14px 24px;
 }
 
 /* Supporting marketing content */
 .marketing {
-  margin: 40px 0;
+    margin: 40px 0;
 }
 .marketing p + h4 {
-  margin-top: 28px;
+    margin-top: 28px;
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
 }
