@@ -56,16 +56,8 @@
     opacity: 0;
 }
 
-.keySelected {
+.selected {
     background-color: rgba(0, 128, 0, 0.35);
-}
-
-.valueSelected {
-    background-color: rgba(255, 94, 0, 0.57);
-}
-
-.radiusSelected {
-    background-color: rgba(249, 24, 4, 0.59);
 }
 
 .navbar {

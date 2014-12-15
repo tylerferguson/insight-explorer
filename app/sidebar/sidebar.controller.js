@@ -69,12 +69,12 @@
         };
 
 
-        $scope.isSelected = function(index, prop) {
+        $scope.isSelected = function(index) {
 
             var selected = $scope.selected[index];
 
             if (selected) {
-                return selected.item === index && selected.prop === prop;
+                return selected.item === index;
             }
 
 
