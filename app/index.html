@@ -56,12 +56,17 @@
                         <div class="sidebar-options" ng-repeat="dataField in dataFields" >
                             <div class = "property">
                                 <button class="btn" ng-class="{selected: isSelected($index)}" ng-cloak>
-                                    <span class="dataField" ng-bind="dataField"></span>
+                                    <span class="dataField" ng-click="select($index, dataField)" ng-bind="dataField"></span>
                                     <span class="glyphicon glyphicon-list" ng-click="listOptions($index)" ></span>
                                 </button>
                                 <button class="btn property-options options-transition" ng-show="optionsListed($index)">
                                     <span class="dataField ">{{dataField}} count</span>
                                 </button>
+                            </div>
+                            <div class="dimension-selection" ng-show="isSelected($index)">
+                                <button class="btn dimension"></button>
+                                <button class="btn dimension"></button>
+                                <button class="btn dimension"></button>
                             </div>
                         </div>
                     </div>

@@ -45,6 +45,15 @@
     width: 200px;
 }
 
+.dimension-selection {
+    display: flex;
+    height: 17px;
+    flex-grow: 1;
+}
+
+.dimension {
+    flex-grow: 1;
+}
 .options-transition {
     transition: .25s linear all;
     transform: translateX(25px);

@@ -10,6 +10,7 @@
 
         var self = this;
         var selectedLists = [];
+        var selected = [];
 
         $scope.dataFields = [];
         $scope.dataProperties = [];
@@ -56,18 +57,19 @@
 
         };
 
-        $scope.select = function(item, dataField) {
+        $scope.select = function(index, dataField) {
 
-            if($.isEmptyObject(($scope.selected[item]))) {
+//            if($.isEmptyObject(($scope.selected[item]))) {
+//
+//                selectProperty(item);
+//                setProperty(dataField);
+//            } else {
+//
+//                removeProperty(item);
+//                deselectProperty(item);
+//            }
 
-                selectProperty(item);
-                setProperty(dataField);
-            } else {
-
-                removeProperty(item);
-                deselectProperty(item);
-            }
-
+            selected[index] = selected[index] >= 0 ? -1 : index;
         };
 
         $scope.listOptions = function(index) {
@@ -83,13 +85,7 @@
 
         $scope.isSelected = function(index) {
 
-            var selected = $scope.selected[index];
-
-            if (selected) {
-                return selected.item === index;
-            }
-
-
+            return selected[index] === index;
         };
 
         $scope.enableByChosenProperties = function (value) {
