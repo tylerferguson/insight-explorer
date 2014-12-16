@@ -16,7 +16,7 @@
 
             $('#chart').empty();
 
-            var chart = new insight[args.chartType](args.data, '#chart', args.dataProperties[0], args.dataProperties[1])
+            var chart = new insight[args.chartType](args.data, '#chart', args.dimensions.key, args.dimensions.value)
                 .build();
 
             chart.draw();
