@@ -57,7 +57,7 @@
 
         };
 
-        $scope.select = function(index, dataField) {
+        $scope.select = function(index, subProp) {
 
 //            if($.isEmptyObject(($scope.selected[item]))) {
 //
@@ -68,8 +68,17 @@
 //                removeProperty(item);
 //                deselectProperty(item);
 //            }
+            if(!selected[index]){
+                selected[index] = {};
+            }
 
-            selected[index] = selected[index] >= 0 ? -1 : index;
+            if(subProp) {
+
+                selected[index][subProp] = selected[index][subProp] ? '' : subProp;
+            } else {
+
+                selected[index].index = selected[index].index >= 0 ? -1 : index;
+            }
         };
 
         $scope.listOptions = function(index) {
@@ -83,9 +92,16 @@
         };
 
 
-        $scope.isSelected = function(index) {
+        $scope.isSelected = function(index, subProp) {
 
-            return selected[index] === index;
+            if(selected[index]) {
+
+                if (subProp) {
+                    return selected[index][subProp] === subProp;
+                } else {
+                    return selected[index].index === index;
+                }
+            }
         };
 
         $scope.enableByChosenProperties = function (value) {
