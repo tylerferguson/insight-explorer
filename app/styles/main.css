@@ -73,15 +73,15 @@
     justify-content: center;
 }
 
-#key {
+.key {
     background-color: rgba(0, 128, 0, 0.35);
 }
 
-#value {
+.value {
     background-color: rgba(249, 24, 4, 0.35);
 }
 
-#radius {
+.radius {
     background-color: rgba(255, 94, 0, 0.35);
 }
 

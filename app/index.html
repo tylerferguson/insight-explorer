@@ -71,9 +71,9 @@
                                 </div>
                             </div>
                             <div class="dimension-selection" ng-show="isSelected($index)">
-                                <button class="btn dimension key">Key</button>
-                                <button class="btn dimension value">Value</button>
-                                <button class="btn dimension radius">Radius</button>
+                                <button class="btn dimension" ng-click="select($index, 'key')" ng-class="{key: isSelected($index, 'key')}">Key</button>
+                                <button class="btn dimension" ng-click="select($index, 'value')" ng-class="{value: isSelected($index, 'value')}">Value</button>
+                                <button class="btn dimension" ng-click="select($index, 'radius')" ng-class="{radius: isSelected($index, 'radius')}">Radius</button>
                             </div>
                         </div>
                     </div>
