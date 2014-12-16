@@ -9,11 +9,13 @@
     angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', function ($scope, $http) {
 
         var self = this;
+        var selectedLists = [];
 
         $scope.dataFields = [];
         $scope.dataProperties = [];
         $scope.charts = [];
         $scope.selected = [];
+
 
         self.prop = 0;
 
@@ -66,6 +68,16 @@
                 deselectProperty(item);
             }
 
+        };
+
+        $scope.listOptions = function(index) {
+
+            selectedLists[index]  =  selectedLists[index] >= 0 ? -1 : index;
+        };
+
+        $scope.optionsListed = function(index) {
+
+            return selectedLists[index] === index;
         };
 
 
