@@ -4,8 +4,6 @@
 
 (function() {
 
-    'use strict';
-
     angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', function ($scope, $http) {
 
         var self = this;
@@ -58,14 +56,23 @@
 
         };
 
-        $scope.selectDimension = function(index, dimension, dataField) {
+        $scope.selectDimension = function(index, dimension, dataField, subProp) {
 
-            $scope.select(index, dimension);
-            self.dimensions[dimension] = dataField;
-            self.numDimensions++;
+            if (subProp) {
+
+                $scope.select(index, dimension, subProp);
+                self.dimensions[dimension] = dataField; //this needs fixed
+                self.numDimensions++;// this too
+            } else {
+
+                $scope.select(index, dimension);
+                self.dimensions[dimension] = dataField;
+                self.numDimensions++;
+            }
+
         };
 
-        $scope.select = function(index, subProp) {
+        $scope.select = function(index, option, subProp) {
 
 //            if($.isEmptyObject(($scope.selected[item]))) {
 //
@@ -82,7 +89,10 @@
 
             if(subProp) {
 
-                selected[index][subProp] = selected[index][subProp] ? '' : subProp;
+                selected[index][subProp][option] = selected[index][subProp][option] ? '' : option;
+            }else if(option) {
+
+                selected[index][option] = selected[index][option] ? '' : option;
             } else {
 
                 selected[index].index = selected[index].index >= 0 ? -1 : index;
@@ -100,12 +110,14 @@
         };
 
 
-        $scope.isSelected = function(index, subProp) {
+        $scope.isSelected = function(index, option, subProp) {
 
             if(selected[index]) {
 
-                if (subProp) {
-                    return selected[index][subProp] === subProp;
+                if (subProp && selected[index][subProp]) {
+                    return selected[index][subProp][option] === option;
+                } else if (option) {
+                    return selected[index][option] === option;
                 } else {
                     return selected[index].index === index;
                 }

@@ -64,9 +64,9 @@
                                         <span class="dataField ">{{dataField}} count</span>
                                     </button>
                                     <div class="dimension-selection" ng-show="isSelected($index, 'count')">
-                                        <button class="btn dimension key">Key</button>
-                                        <button class="btn dimension value">Value</button>
-                                        <button class="btn dimension radius">Radius</button>
+                                        <button class="btn dimension" ng-click="selectDimension($index, 'key', dataField, 'count')" ng-class="{key: isSelected($index, 'key', 'count')}">Key</button>
+                                        <button class="btn dimension" ng-click="selectDimension($index, 'value', dataField, 'count')" ng-class="{value: isSelected($index, 'value', 'count')}">Value</button>
+                                        <button class="btn dimension" ng-click="selectDimension($index, 'radius', dataField, 'count')" ng-class="{radius: isSelected($index, 'radius', 'count')}">Radius</button>
                                     </div>
                                 </div>
                             </div>
