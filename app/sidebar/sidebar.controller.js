@@ -35,13 +35,13 @@
 
         };
 
-        var selectProperty = function(item) {
-            $scope.selected[item] = {
-                item: item,
-                prop: self.prop
-            };
-            self.prop++;
-        };
+//        var selectProperty = function(item) {
+//            $scope.selected[item] = {
+//                item: item,
+//                prop: self.prop
+//            };
+//            self.prop++;
+//        };
 
         var deselectProperty = function(item) {
 
@@ -60,39 +60,50 @@
 
             if (subProp) {
 
-                $scope.select(index, dimension, subProp);
+                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
                 self.dimensions[dimension] = dataField; //this needs fixed
                 self.numDimensions++;// this too
             } else {
 
-                $scope.select(index, dimension);
+                selected[index][dimension] = selected[index][dimension] ? '' : dimension;
                 self.dimensions[dimension] = dataField;
                 self.numDimensions++;
             }
 
         };
 
-        $scope.select = function(index, option, subProp) {
-
-//            if($.isEmptyObject(($scope.selected[item]))) {
+//        this.select = function(index, dimension, subProp) {
 //
-//                selectProperty(item);
-//                setProperty(dataField);
-//            } else {
+////            if($.isEmptyObject(($scope.selected[item]))) {
+////
+////                selectProperty(item);
+////                setProperty(dataField);
+////            } else {
+////
+////                removeProperty(item);
+////                deselectProperty(item);
+////            }
 //
-//                removeProperty(item);
-//                deselectProperty(item);
+////            if (!selected[index][option]) {
+////                selected[index][option] = {};
+////            }
+//
+//            if(subProp) {
+//
+//                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
 //            }
+//        };
+
+        $scope.selectProperty = function(index, subProp) {
+
             if(!selected[index]){
                 selected[index] = {};
             }
 
             if(subProp) {
 
-                selected[index][subProp][option] = selected[index][subProp][option] ? '' : option;
-            }else if(option) {
-
-                selected[index][option] = selected[index][option] ? '' : option;
+                selected[index][subProp] = $.isEmptyObject(selected[index][subProp]) ? {name: subProp} : {};
+                console.log(selected[index][subProp]);
             } else {
 
                 selected[index].index = selected[index].index >= 0 ? -1 : index;
@@ -109,17 +120,33 @@
             return selectedLists[index] === index;
         };
 
+        $scope.isSelectedProperty = function(index, subProp) {
 
-        $scope.isSelected = function(index, option, subProp) {
+            if(!$.isEmptyObject(selected[index])) {
+
+                if (subProp) {
+//                    console.log(JSON.stringify(selected) + ', ' + option);
+
+                    if (!$.isEmptyObject(selected[index][subProp])) {
+                        return selected[index][subProp].name === subProp;
+                    }
+                } else {
+                    return selected[index].index === index;
+                }
+            }
+        };
+
+        $scope.isSelectedDimension = function(index, dimension, subProp) {
 
             if(selected[index]) {
 
                 if (subProp && selected[index][subProp]) {
-                    return selected[index][subProp][option] === option;
-                } else if (option) {
-                    return selected[index][option] === option;
+//                    console.log(JSON.stringify(selected) + ', ' + option);
+
+                    return selected[index][subProp][dimension] === dimension;
                 } else {
-                    return selected[index].index === index;
+
+                    return selected[index][dimension] === dimension;
                 }
             }
         };
