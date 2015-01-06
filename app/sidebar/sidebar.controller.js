@@ -56,22 +56,6 @@
 
         };
 
-        $scope.selectDimension = function(index, dimension, dataField, subProp) {
-
-            if (subProp) {
-
-                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
-                self.dimensions[dimension] = dataField; //this needs fixed
-                self.numDimensions++;// this too
-            } else {
-
-                selected[index][dimension] = selected[index][dimension] ? '' : dimension;
-                self.dimensions[dimension] = dataField;
-                self.numDimensions++;
-            }
-
-        };
-
 //        this.select = function(index, dimension, subProp) {
 //
 ////            if($.isEmptyObject(($scope.selected[item]))) {
@@ -93,6 +77,23 @@
 //                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
 //            }
 //        };
+
+        $scope.selectDimension = function(index, dimension, dataField, subProp) {
+
+            if (subProp) {
+
+                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
+                console.log(selected[index][subProp][dimension]);
+                self.dimensions[dimension] = dataField; //this needs fixed
+                self.numDimensions++;// this too
+            } else {
+
+                selected[index][dimension] = selected[index][dimension] ? '' : dimension;
+                self.dimensions[dimension] = dataField;
+                self.numDimensions++;
+            }
+
+        };
 
         $scope.selectProperty = function(index, subProp) {
 
@@ -140,10 +141,13 @@
 
             if(selected[index]) {
 
-                if (subProp && selected[index][subProp]) {
+                if (subProp) {
 //                    console.log(JSON.stringify(selected) + ', ' + option);
 
-                    return selected[index][subProp][dimension] === dimension;
+                    if ( !$.isEmptyObject(selected[index][subProp])) {
+
+                        return selected[index][subProp][dimension] === dimension;
+                    }
                 } else {
 
                     return selected[index][dimension] === dimension;

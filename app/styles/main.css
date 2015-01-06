@@ -51,12 +51,12 @@
 }
 
 .property-options > .btn {
-    background-color: rgba(128, 128, 128, 0.27);
+    border: 1px solid rgba(128, 128, 128, 0.27);
     flex-grow: 1;
 }
 
 .property-options .dimension {
-    background-color: rgba(128, 128, 128, 0.27);
+    border: 1px solid rgba(128, 128, 128, 0.27);
 }
 
 .dimension-selection {
