@@ -2,6 +2,8 @@
  * Created by tferguson on 26/11/2014.
  */
 
+'use strict';
+
 (function() {
 
     angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', function ($scope, $http) {
@@ -15,7 +17,11 @@
         $scope.charts = [];
         $scope.selected = [];
 
-        self.dimensions = {};
+        self.dimensions = {
+            key: {},
+            value: {},
+            radius: {}
+        };
         self.prop = 0;
         self.numDimensions = 0;
 
@@ -84,12 +90,13 @@
 
                 selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
                 console.log(selected[index][subProp][dimension]);
-                self.dimensions[dimension] = dataField; //this needs fixed
-                self.numDimensions++;// this too
+                self.dimensions[dimension].name = dataField;                    //this needs fixed
+                self.dimensions[dimension].groupingProperty = subProp;         //for radiusProperty??
+                self.numDimensions++;
             } else {
 
                 selected[index][dimension] = selected[index][dimension] ? '' : dimension;
-                self.dimensions[dimension] = dataField;
+                self.dimensions[dimension].name = dataField;
                 self.numDimensions++;
             }
 
