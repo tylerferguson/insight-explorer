@@ -73,6 +73,10 @@
     justify-content: center;
 }
 
+.nav > .active {
+    opacity: 1;
+}
+
 .key {
     background-color: rgba(0, 128, 0, 0.35);
 }
