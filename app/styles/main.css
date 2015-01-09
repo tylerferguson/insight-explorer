@@ -17,17 +17,47 @@
     margin-right: 20px;
 }
 
+/*.btn {*/
+    /*display: flex;*/
+    /*flex-grow: 1;*/
+    /*background-color: #f8f8f8;*/
+    /*margin: 2px;*/
+/*}*/
+
 .btn {
     display: flex;
     flex-grow: 1;
     background-color: #f8f8f8;
     margin: 2px;
+
+
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
+
+/*.btn:focus.selected, .btn:hover.selected {*/
+    /*color: white;*/
+/*}*/
 
 .btn:focus.selected, .btn:hover.selected {
     color: white;
 }
 
+
+/*.btn > .glyphicon {*/
+    /*top: 2px;*/
+    /*width: 20px;*/
+    /*color: rgba(0, 0, 0, 0.46);*/
+/*}*/
 
 .btn > .glyphicon {
     top: 2px;
@@ -50,10 +80,16 @@
     flex-direction: column;
 }
 
+/*.property-options > .btn {*/
+    /*border: 1px solid rgba(128, 128, 128, 0.27);*/
+    /*flex-grow: 1;*/
+/*}*/
+
 .property-options > .btn {
     border: 1px solid rgba(128, 128, 128, 0.27);
     flex-grow: 1;
 }
+
 
 .property-options .dimension {
     border: 1px solid rgba(128, 128, 128, 0.27);
@@ -205,24 +241,6 @@
 .main-container-narrow > hr {
     margin: 30px 0;
 
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-.marketing p + h4 {
-    margin-top: 28px;
 }
 
 /* Responsive: Portrait tablets and up */
