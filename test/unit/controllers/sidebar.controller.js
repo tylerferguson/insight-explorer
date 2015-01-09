@@ -2,6 +2,8 @@
  * Created by tferguson on 01/12/2014.
  */
 
+/* globals xit */
+
 
 'use strict';
 
@@ -22,19 +24,79 @@ describe('Controller: SideCtrl', function () {
 
     afterEach(function() {});
 
-    it('should keep track of properties selected by the user for charting', function() {
+    it('should highlight a property and show its dimension selectors when clicked', function() {
 
-        scope.select(1, 'name');
-        expect(scope.dataProperties).toEqual(['name']);
+        expect(scope.isSelectedProperty(1)).toBeFalsy();
+        expect(scope.isSelectedProperty(3)).toBeFalsy();
 
-        scope.select(0, 'age');
-        expect(scope.dataProperties).toEqual(['name', 'age']);
+        scope.selectProperty(1);
+        scope.selectProperty(3);
+        expect(scope.isSelectedProperty(1)).toBe(true);
+        expect(scope.isSelectedProperty(3)).toBe(true);
+        expect(scope.isSelectedProperty(0)).toBeFalsy();
 
-        scope.select(3, 'nationality');
-        expect(scope.dataProperties).toEqual(['name', 'age', 'nationality']);
+        scope.selectProperty(0);
+        expect(scope.isSelectedProperty(0)).toBe(true);
+
+
     });
 
-    it('should forget the last property selected by the user if clicked again', function() {
+    it('should highlight a dimension if and only if it is clicked', function() {
+
+        scope.selectProperty(1);
+        expect(scope.isSelectedDimension(1, 'value')).toBeFalsy();
+
+        scope.selectDimension(1, 'value', 'name');
+        expect(scope.isSelectedDimension(1, 'value')).toBe(true);
+
+        scope.selectProperty(0);
+        scope.selectDimension(0, 'key', 'age');
+        expect(scope.isSelectedDimension(1, 'value')).toBe(true);
+        expect(scope.isSelectedDimension(0, 'key')).toBe(true);
+
+        scope.selectProperty(3);
+        scope.selectDimension(3, 'radius', 'nationality');
+        expect(scope.isSelectedDimension(1, 'value')).toBe(true);
+        expect(scope.isSelectedDimension(0, 'key')).toBe(true);
+        expect(scope.isSelectedDimension(3, 'radius')).toBe(true);
+    });
+
+    it('should keep track of dimensions selected by the user for charting', function() {
+
+        //Show dimension selectors
+        scope.selectProperty(1);
+        scope.selectProperty(0);
+        scope.selectProperty(3);
+
+        scope.selectDimension(1, 'key', 'name');
+        expect(ctrl.dimensions.key.name).toEqual('name');
+
+        scope.selectDimension(0, 'value', 'age');
+        expect(ctrl.dimensions).toEqual({
+            key: {
+                name: 'name'
+            },
+            value: {
+                name: 'age'
+            },
+            radius: {}
+        });
+
+        scope.selectDimension(3, 'radius', 'nationality');
+        expect(ctrl.dimensions).toEqual({
+            key: {
+                name: 'name'
+            },
+            value: {
+                name: 'age'
+            },
+            radius: {
+                name: 'nationality'
+            }
+        });
+    });
+
+    xit('should forget the last property selected by the user if clicked again', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -47,7 +109,7 @@ describe('Controller: SideCtrl', function () {
         expect(scope.dataProperties).toEqual(['name', 'age']);
     });
 
-    it('should keep track of properties that have been chosen after deselection', function() {
+    xit('should keep track of properties that have been chosen after deselection', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -74,7 +136,7 @@ describe('Controller: SideCtrl', function () {
 
     });
 
-    it('should forget all subsequent chosen properties if a selection is clicked again', function() {
+    xit('should forget all subsequent chosen properties if a selection is clicked again', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -96,34 +158,7 @@ describe('Controller: SideCtrl', function () {
         expect(scope.dataProperties).toEqual([]);
     });
 
-    it('should highlight the chosen key property', function() {
-
-        scope.select(1, 'name');
-
-        expect(scope.isSelected(1, 0)).toBe(true);
-    });
-
-    it('should highlight the chosen value property and keep the key property highlighted', function() {
-
-        scope.select(1, 'name');
-        scope.select(0, 'age');
-
-        expect(scope.isSelected(1, 0)).toBe(true);
-        expect(scope.isSelected(0, 1)).toBe(true);
-    });
-
-    it('should highlight the chosen radius property and keep the key and value properties highlighted', function() {
-
-        scope.select(1, 'name');
-        scope.select(0, 'age');
-        scope.select(3, 'nationality');
-
-        expect(scope.isSelected(1, 0)).toBe(true);
-        expect(scope.isSelected(0, 1)).toBe(true);
-        expect(scope.isSelected(3, 2)).toBe(true);
-    });
-
-    it('should deselect the radius property and only the radius property when clicked again', function() {
+    xit('should deselect the radius property and only the radius property when clicked again', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -138,7 +173,7 @@ describe('Controller: SideCtrl', function () {
         expect(scope.isSelected(3, 2)).toBe(false);
     });
 
-    it('should re-highlight the radius property if the same one is selected again', function() {
+    xit('should re-highlight the radius property if the same one is selected again', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -156,7 +191,7 @@ describe('Controller: SideCtrl', function () {
         expect(scope.isSelected(3, 2)).toBe(true);
     });
 
-    it('should highlight a new radius Property if selection is made after a deselection', function() {
+    xit('should highlight a new radius Property if selection is made after a deselection', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -174,7 +209,7 @@ describe('Controller: SideCtrl', function () {
         expect(scope.isSelected(2, 2)).toBe(true);
     });
 
-    it('should deselect the radius and value properties if the selected value property is clicked', function() {
+    xit('should deselect the radius and value properties if the selected value property is clicked', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -190,7 +225,7 @@ describe('Controller: SideCtrl', function () {
 
     });
 
-    it('should deselect the radius, value and key properties if the selected key property is clicked', function() {
+    xit('should deselect the radius, value and key properties if the selected key property is clicked', function() {
 
         //Properties are initially selected
         scope.select(1, 'name');
@@ -215,7 +250,7 @@ describe('Controller: SideCtrl', function () {
         expect(rootScope.$broadcast).toHaveBeenCalledWith('chartSelected', {
             chartType: 'MockChart',
             data: ctrl.data,
-            dataProperties: scope.dataProperties
+            dimensions: ctrl.dimensions
         });
     });
 });
