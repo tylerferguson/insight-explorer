@@ -118,7 +118,9 @@
             }
         };
 
-        $scope.listOptions = function(index) {
+        $scope.listOptions = function(index, event) {
+
+            event.stopPropagation();
 
             selectedLists[index]  =  selectedLists[index] >= 0 ? -1 : index;
         };
