@@ -13,7 +13,6 @@
         var selected = [];
 
         $scope.dataFields = [];
-        $scope.dataProperties = [];
         $scope.charts = [];
         $scope.selected = [];
 
@@ -22,67 +21,12 @@
             value: {},
             radius: {}
         };
-        self.prop = 0;
         self.numDimensions = 0;
 
         $http.get('sidebar/charts.json')
             .success(function (data) {
                 $scope.charts = data;
             });
-
-        var setProperty = function (dataField) {
-
-            $scope.dataProperties.push(dataField);
-        };
-
-        var removeProperty = function(item) {
-
-            $scope.dataProperties.splice($scope.selected[item].prop);
-
-        };
-
-//        var selectProperty = function(item) {
-//            $scope.selected[item] = {
-//                item: item,
-//                prop: self.prop
-//            };
-//            self.prop++;
-//        };
-
-        var deselectProperty = function(item) {
-
-            $scope.selected.forEach(function(element) {
-                if (element.prop > $scope.selected[item].prop) {
-                    $scope.selected[element.item] = {};
-                    self.prop--;
-                }
-            });
-            $scope.selected[item] = {};
-            self.prop--;
-
-        };
-
-//        this.select = function(index, dimension, subProp) {
-//
-////            if($.isEmptyObject(($scope.selected[item]))) {
-////
-////                selectProperty(item);
-////                setProperty(dataField);
-////            } else {
-////
-////                removeProperty(item);
-////                deselectProperty(item);
-////            }
-//
-////            if (!selected[index][option]) {
-////                selected[index][option] = {};
-////            }
-//
-//            if(subProp) {
-//
-//                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
-//            }
-//        };
 
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
 
