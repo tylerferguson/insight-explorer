@@ -6,7 +6,7 @@
 
 (function() {
 
-    angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', function ($scope, $http) {
+    angular.module('insightExplorer').controller('SideCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
         var self = this;
         var selectedLists = [];
@@ -23,10 +23,13 @@
         };
         self.numDimensions = 0;
 
-        $http.get('sidebar/charts.json')
-            .success(function (data) {
-                $scope.charts = data;
-            });
+        $q.all([
+            $http.get('sidebar/charts.json'),
+            $http.get('sidebar/groupingProperties.json')
+        ]).then(function(results) {
+            $scope.charts = results[0].data;
+            $scope.subProps = results[1].data;
+        });
 
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
 
