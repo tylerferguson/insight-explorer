@@ -44,21 +44,21 @@ describe('Controller: SideCtrl', function () {
     it('should highlight a dimension if and only if it is clicked', function() {
 
         scope.selectProperty(1);
-        expect(scope.isSelectedDimension(1, 'value')).toBeFalsy();
+        expect(scope.isSelectedDimension(1, 'value')).toBe(false);
 
         scope.selectDimension(1, 'value', 'name');
-        expect(scope.isSelectedDimension(1, 'value')).toBe(true);
+        expect(scope.isSelectedDimension(1, 'value')).toBe('value');
 
         scope.selectProperty(0);
         scope.selectDimension(0, 'key', 'age');
-        expect(scope.isSelectedDimension(1, 'value')).toBe(true);
-        expect(scope.isSelectedDimension(0, 'key')).toBe(true);
+        expect(scope.isSelectedDimension(1, 'value')).toBe('value');
+        expect(scope.isSelectedDimension(0, 'key')).toBe('key');
 
         scope.selectProperty(3);
         scope.selectDimension(3, 'radius', 'nationality');
-        expect(scope.isSelectedDimension(1, 'value')).toBe(true);
-        expect(scope.isSelectedDimension(0, 'key')).toBe(true);
-        expect(scope.isSelectedDimension(3, 'radius')).toBe(true);
+        expect(scope.isSelectedDimension(1, 'value')).toBe('value');
+        expect(scope.isSelectedDimension(0, 'key')).toBe('key');
+        expect(scope.isSelectedDimension(3, 'radius')).toBe('radius');
     });
 
     it('should keep track of dimensions selected by the user for charting', function() {
