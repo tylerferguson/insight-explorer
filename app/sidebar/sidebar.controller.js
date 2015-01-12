@@ -35,13 +35,41 @@
 
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
 
+            //subProp clicked
             if(subProp) {
 
+                //Case where subProp is already selected
                 if(selected[index][subProp][dimension]) {
 
                     selected[index][subProp][dimension] = '';
                     self.dimensions[dimension] = {};
                     self.numDimensions--;
+
+                //Case where dimension has been chosen elsewhere
+                } else if(!$.isEmptyObject(self.dimensions[dimension])) {
+
+                    // and dimension was on a grouping property
+                    if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
+
+                        //deselect previous dimension
+                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
+
+                        //select new dimension
+                        selected[index][subProp][dimension] = dimension;
+                        self.dimensions[dimension].name = dataField;
+                        self.dimensions[dimension].groupingProperty = subProp;
+
+                    // and dimension was on a datafield
+                    } else {
+                        //deselect previous dimension
+                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
+
+                        //select new dimension
+                        selected[index][subProp][dimension] = dimension;
+                        self.dimensions[dimension].name = dataField;
+                        self.dimensions[dimension].groupingProperty = subProp;
+                    }
+                //Case where subProp is a first time selection
                 } else {
 
                     selected[index][subProp][dimension] = dimension;
@@ -50,13 +78,39 @@
                     self.numDimensions++;
                 }
             }
+            //DataField clicked
             else {
-
+                //Case where dataField already selected
                 if(selected[index][dimension]) {
 
                     selected[index][dimension] = '';
                     self.dimensions[dimension] = {};
                     self.numDimensions--;
+
+                //Case where dimension has been chosen elsewhere
+                } else if(!$.isEmptyObject(self.dimensions[dimension])) {
+
+                    // and dimension was on a grouping property
+                    if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
+
+                        //deselect previous dimension
+                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
+
+                        //select new dimension
+                        selected[index][dimension] = dimension;
+                        self.dimensions[dimension].name = dataField;
+
+                        // and dimension was on a datafield
+                    } else {
+                        //deselect previous dimension
+                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
+
+                        //select new dimension
+                        selected[index][dimension] = dimension;
+                        self.dimensions[dimension].name = dataField;
+                    }
+
+                //Case where dataField is a first time selection
                 } else {
 
                     selected[index][dimension] = dimension;
