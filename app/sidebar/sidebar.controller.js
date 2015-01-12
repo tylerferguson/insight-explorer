@@ -35,17 +35,34 @@
 
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
 
-            if (subProp) {
+            if(subProp) {
 
-                selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
-                self.dimensions[dimension].name = dataField;                    //this needs fixed
-                self.dimensions[dimension].groupingProperty = subProp;         //for radiusProperty??
-                self.numDimensions++;
-            } else {
+                if(selected[index][subProp][dimension]) {
 
-                selected[index][dimension] = selected[index][dimension] ? '' : dimension;
-                self.dimensions[dimension].name = dataField;
-                self.numDimensions++;
+                    selected[index][subProp][dimension] = '';
+                    self.dimensions[dimension] = {};
+                    self.numDimensions--;
+                } else {
+
+                    selected[index][subProp][dimension] = dimension;
+                    self.dimensions[dimension].name = dataField;                    //this needs fixed
+                    self.dimensions[dimension].groupingProperty = subProp;         //for radiusProperty??
+                    self.numDimensions++;
+                }
+            }
+            else {
+
+                if(selected[index][dimension]) {
+
+                    selected[index][dimension] = '';
+                    self.dimensions[dimension] = {};
+                    self.numDimensions--;
+                } else {
+
+                    selected[index][dimension] = dimension;
+                    self.dimensions[dimension].name = dataField;
+                    self.numDimensions++;
+                }
             }
 
         };
@@ -115,7 +132,7 @@
 
             if (filterByNumProperties) {
 
-                var isOrdinal = !Number(self.data[0][self.dimensions.key]);
+                var isOrdinal = !Number(self.data[0][self.dimensions.key.name]);
 
                 return isOrdinal ? value.type === 'SimpleLineChart' || value.type === 'SimpleScatterChart' : false;
             }
