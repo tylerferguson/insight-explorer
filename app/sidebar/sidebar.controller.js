@@ -38,7 +38,6 @@
             if (subProp) {
 
                 selected[index][subProp][dimension] = selected[index][subProp][dimension] ? '' : dimension;
-                console.log(selected[index][subProp][dimension]);
                 self.dimensions[dimension].name = dataField;                    //this needs fixed
                 self.dimensions[dimension].groupingProperty = subProp;         //for radiusProperty??
                 self.numDimensions++;
@@ -60,7 +59,6 @@
             if(subProp) {
 
                 selected[index][subProp] = $.isEmptyObject(selected[index][subProp]) ? {name: subProp} : {};
-                console.log(selected[index][subProp]);
             } else {
 
                 selected[index].index = selected[index].index >= 0 ? -1 : index;
@@ -84,7 +82,6 @@
             if(!$.isEmptyObject(selected[index])) {
 
                 if (subProp) {
-//                    console.log(JSON.stringify(selected) + ', ' + option);
 
                     if (!$.isEmptyObject(selected[index][subProp])) {
                         return selected[index][subProp].name === subProp;
