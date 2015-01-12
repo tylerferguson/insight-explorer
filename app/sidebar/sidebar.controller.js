@@ -25,10 +25,12 @@
 
         $q.all([
             $http.get('sidebar/charts.json'),
-            $http.get('sidebar/groupingProperties.json')
+            $http.get('sidebar/groupingProperties.json'),
+            $http.get('sidebar/dimensions.json')
         ]).then(function(results) {
             $scope.charts = results[0].data;
             $scope.subProps = results[1].data;
+            $scope.dimensions = results[2].data;
         });
 
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
@@ -98,15 +100,14 @@
             if(selected[index]) {
 
                 if (subProp) {
-//                    console.log(JSON.stringify(selected) + ', ' + option);
 
                     if ( !$.isEmptyObject(selected[index][subProp])) {
 
-                        return selected[index][subProp][dimension] === dimension;
+                        return selected[index][subProp][dimension] === dimension ? dimension : false;
                     }
                 } else {
 
-                    return selected[index][dimension] === dimension;
+                    return selected[index][dimension] === dimension ? dimension : false;
                 }
             }
         };

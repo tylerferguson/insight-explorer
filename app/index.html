@@ -53,27 +53,29 @@
             <div class="content">
                 <div class="sidebar" ng-controller="SideCtrl">
                     <div class="sidebar-options-container">
-                        <div class="sidebar-options" ng-repeat="dataField in dataFields" >
+                        <div class="sidebar-options" ng-repeat="dataField in dataFields" ng-init="index = $index" >
                             <div class = "property">
-                                <div class="btn"  ng-click="selectProperty($index)" ng-class="{selected: isSelectedProperty($index)}" ng-cloak>
+                                <div class="btn"  ng-click="selectProperty(index)" ng-class="{selected: isSelectedProperty(index)}" ng-cloak>
                                     <div class="dataField" ng-bind="dataField"></div>
-                                    <div class="glyphicon glyphicon-list" ng-click="listOptions($index, $event)" ></div>
+                                    <div class="glyphicon glyphicon-list" ng-click="listOptions(index, $event)" ></div>
                                 </div>
-                                <div class="property-options options-transition" ng-show="optionsListed($index)">
-                                    <div class="btn" ng-click="selectProperty($index, 'count')">
-                                        <span class="dataField ">{{dataField}} count</span>
-                                    </div>
-                                    <div class="dimension-selection" ng-show="isSelectedProperty($index, 'count')">
-                                        <div class="btn dimension" ng-click="selectDimension($index, 'key', dataField, 'count')" ng-class="{key: isSelectedDimension($index, 'key', 'count')}">Key</div>
-                                        <div class="btn dimension" ng-click="selectDimension($index, 'value', dataField, 'count')" ng-class="{value: isSelectedDimension($index, 'value', 'count')}">Value</div>
-                                        <div class="btn dimension" ng-click="selectDimension($index, 'radius', dataField, 'count')" ng-class="{radius: isSelectedDimension($index, 'radius', 'count')}">Radius</div>
+                                <div class="property-options options-transition" ng-show="optionsListed(index)">
+                                    <div ng-repeat="subProp in subProps" >
+                                        <div class="btn" ng-click="selectProperty(index, subProp)">
+                                            <span class="dataField ">{{dataField}} {{subProp}}</span>
+                                        </div>
+                                        <div class="dimension-selection" ng-show="isSelectedProperty(index, subProp)">
+                                            <div class="dimension" ng-repeat="dimension in dimensions">
+                                                <div class="btn" ng-click="selectDimension(index, dimension, dataField, subProp)" ng-class="isSelectedDimension(index, dimension, subProp)">{{dimension}}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="dimension-selection" ng-show="isSelectedProperty($index)">
-                                <div class="btn dimension" ng-click="selectDimension($index, 'key', dataField)" ng-class="{key: isSelectedDimension($index, 'key')}">Key</div>
-                                <div class="btn dimension" ng-click="selectDimension($index, 'value', dataField)" ng-class="{value: isSelectedDimension($index, 'value')}">Value</div>
-                                <div class="btn dimension" ng-click="selectDimension($index, 'radius', dataField)" ng-class="{radius: isSelectedDimension($index, 'radius')}">Radius</div>
+                            <div class="dimension-selection" ng-show="isSelectedProperty(index)">
+                                <div class="btn dimension" ng-click="selectDimension(index, 'key', dataField)" ng-class="{key: isSelectedDimension(index, 'key')}">Key</div>
+                                <div class="btn dimension" ng-click="selectDimension(index, 'value', dataField)" ng-class="{value: isSelectedDimension(index, 'value')}">Value</div>
+                                <div class="btn dimension" ng-click="selectDimension(index, 'radius', dataField)" ng-class="{radius: isSelectedDimension(index, 'radius')}">Radius</div>
                             </div>
                         </div>
                     </div>
