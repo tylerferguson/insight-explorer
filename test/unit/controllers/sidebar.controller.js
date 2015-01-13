@@ -76,10 +76,12 @@ describe('Controller: SideCtrl', function () {
         scope.selectDimension(0, 'value', 'age');
         expect(ctrl.dimensions).toEqual({
             key: {
-                name: 'name'
+                name: 'name',
+                groupingProperty: undefined
             },
             value: {
-                name: 'age'
+                name: 'age',
+                groupingProperty: undefined
             },
             radius: {}
         });
@@ -87,13 +89,16 @@ describe('Controller: SideCtrl', function () {
         scope.selectDimension(3, 'radius', 'nationality');
         expect(ctrl.dimensions).toEqual({
             key: {
-                name: 'name'
+                name: 'name',
+                groupingProperty: undefined
             },
             value: {
-                name: 'age'
+                name: 'age',
+                groupingProperty: undefined
             },
             radius: {
-                name: 'nationality'
+                name: 'nationality',
+                groupingProperty: undefined
             }
         });
     });
@@ -109,7 +114,7 @@ describe('Controller: SideCtrl', function () {
         scope.selectDimension(2, 'key', 'nationality');
 
         //correct dataField added to dimensions object
-        expect(ctrl.dimensions.key).toEqual({name: 'nationality'});
+        expect(ctrl.dimensions.key).toEqual({name: 'nationality', groupingProperty: undefined});
         //correct selection class applied
         expect(scope.isSelectedDimension(2, 'key')).toBe('key');
         //old selection no longer selected
