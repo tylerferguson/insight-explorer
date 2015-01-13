@@ -33,6 +33,21 @@
             $scope.dimensions = results[2].data;
         });
 
+        var deselectDimension = function(dimension) {
+
+            // dimension was on a grouping property
+            if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
+
+                //deselect previous dimension
+                selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
+            // dimension was on a dataField
+            } else {
+
+                //deselect previous dimension
+                selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
+            }
+        };
+
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
 
             //subProp clicked
@@ -48,16 +63,7 @@
                 //Case where dimension has been chosen elsewhere
                 } else if(!$.isEmptyObject(self.dimensions[dimension])) {
 
-                    // and dimension was on a grouping property
-                    if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
-
-                        //deselect previous dimension
-                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
-                    // and dimension was on a datafield
-                    } else {
-                        //deselect previous dimension
-                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
-                    }
+                    deselectDimension(dimension);
 
                     //select new dimension
                     selected[index][subProp][dimension] = dimension;
@@ -84,16 +90,8 @@
                 //Case where dimension has been chosen elsewhere
                 } else if(!$.isEmptyObject(self.dimensions[dimension])) {
 
-                    // and dimension was on a grouping property
-                    if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
+                   deselectDimension(dimension);
 
-                        //deselect previous dimension
-                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
-                        // and dimension was on a datafield
-                    } else {
-                        //deselect previous dimension
-                        selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
-                    }
                     //select new dimension
                     selected[index][dimension] = dimension;
                     self.dimensions[dimension].name = dataField;
