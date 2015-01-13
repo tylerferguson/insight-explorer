@@ -53,22 +53,16 @@
 
                         //deselect previous dimension
                         selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
-
-                        //select new dimension
-                        selected[index][subProp][dimension] = dimension;
-                        self.dimensions[dimension].name = dataField;
-                        self.dimensions[dimension].groupingProperty = subProp;
-
                     // and dimension was on a datafield
                     } else {
                         //deselect previous dimension
                         selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
-
-                        //select new dimension
-                        selected[index][subProp][dimension] = dimension;
-                        self.dimensions[dimension].name = dataField;
-                        self.dimensions[dimension].groupingProperty = subProp;
                     }
+
+                    //select new dimension
+                    selected[index][subProp][dimension] = dimension;
+                    self.dimensions[dimension].name = dataField;
+                    self.dimensions[dimension].groupingProperty = subProp;
                 //Case where subProp is a first time selection
                 } else {
 
@@ -95,20 +89,14 @@
 
                         //deselect previous dimension
                         selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
-
-                        //select new dimension
-                        selected[index][dimension] = dimension;
-                        self.dimensions[dimension].name = dataField;
-
                         // and dimension was on a datafield
                     } else {
                         //deselect previous dimension
                         selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
-
-                        //select new dimension
-                        selected[index][dimension] = dimension;
-                        self.dimensions[dimension].name = dataField;
                     }
+                    //select new dimension
+                    selected[index][dimension] = dimension;
+                    self.dimensions[dimension].name = dataField;
 
                 //Case where dataField is a first time selection
                 } else {
