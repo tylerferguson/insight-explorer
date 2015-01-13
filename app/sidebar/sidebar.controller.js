@@ -33,22 +33,34 @@
             $scope.dimensions = results[2].data;
         });
 
-        var deselectDimension = function(dimension) {
-
-            // dimension was on a grouping property
-            if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
-
-                //deselect previous dimension
-                selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
-            // dimension was on a dataField
-            } else {
-
-                //deselect previous dimension
-                selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
-            }
-        };
-
         $scope.selectDimension = function(index, dimension, dataField, subProp) {
+
+            var deselectDimension = function() {
+
+                // dimension was on a grouping property
+                if(selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty]) {
+
+                    //deselect previous dimension
+                    selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][self.dimensions[dimension].groupingProperty][dimension] = '';
+                    // dimension was on a dataField
+                } else {
+
+                    //deselect previous dimension
+                    selected[$.inArray(self.dimensions[dimension].name, $scope.dataFields)][dimension] = '';
+                }
+            };
+
+            var selectNewDimension = function(subProp) {
+
+                if(subProp) {
+                    selected[index][subProp][dimension] = dimension;
+                    self.dimensions[dimension].name = dataField;
+                    self.dimensions[dimension].groupingProperty = subProp;
+                } else {
+                    selected[index][dimension] = dimension;
+                    self.dimensions[dimension].name = dataField;
+                }
+            };
 
             //subProp clicked
             if(subProp) {
@@ -63,18 +75,12 @@
                 //Case where dimension has been chosen elsewhere
                 } else if(!$.isEmptyObject(self.dimensions[dimension])) {
 
-                    deselectDimension(dimension);
+                    deselectDimension();
+                    selectNewDimension(subProp);
 
-                    //select new dimension
-                    selected[index][subProp][dimension] = dimension;
-                    self.dimensions[dimension].name = dataField;
-                    self.dimensions[dimension].groupingProperty = subProp;
                 //Case where subProp is a first time selection
                 } else {
-
-                    selected[index][subProp][dimension] = dimension;
-                    self.dimensions[dimension].name = dataField;                    //this needs fixed
-                    self.dimensions[dimension].groupingProperty = subProp;         //for radiusProperty??
+                    selectNewDimension(subProp);
                     self.numDimensions++;
                 }
             }
@@ -90,17 +96,13 @@
                 //Case where dimension has been chosen elsewhere
                 } else if(!$.isEmptyObject(self.dimensions[dimension])) {
 
-                   deselectDimension(dimension);
-
-                    //select new dimension
-                    selected[index][dimension] = dimension;
-                    self.dimensions[dimension].name = dataField;
+                   deselectDimension();
+                   selectNewDimension();
 
                 //Case where dataField is a first time selection
                 } else {
 
-                    selected[index][dimension] = dimension;
-                    self.dimensions[dimension].name = dataField;
+                    selectNewDimension();
                     self.numDimensions++;
                 }
             }
