@@ -98,15 +98,12 @@
 
                    deselectDimension();
                    selectNewDimension();
-
                 //Case where dataField is a first time selection
                 } else {
-
                     selectNewDimension();
                     self.numDimensions++;
                 }
             }
-
         };
 
         $scope.selectProperty = function(index, subProp) {

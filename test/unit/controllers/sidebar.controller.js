@@ -20,6 +20,8 @@ describe('Controller: SideCtrl', function () {
             scope = rootScope.$new();
             ctrl = $controller('SideCtrl', {$scope: scope});
         });
+
+        scope.dataFields = ['name', 'age', 'nationality'];
     });
 
     afterEach(function() {});
@@ -94,6 +96,44 @@ describe('Controller: SideCtrl', function () {
                 name: 'nationality'
             }
         });
+    });
+
+    it('should deselect an old dimension when the same dimension is chosen on a different dataField', function() {
+
+        //Select a dimension on a data field
+        scope.selectProperty(1);
+        scope.selectDimension(1, 'key', 'age');
+
+        //Selected the same dimension on a different data field
+        scope.selectProperty(2);
+        scope.selectDimension(2, 'key', 'nationality');
+
+        //correct dataField added to dimensions object
+        expect(ctrl.dimensions.key).toEqual({name: 'nationality'});
+        //correct selection class applied
+        expect(scope.isSelectedDimension(2, 'key')).toBe('key');
+        //old selection no longer selected
+        expect(scope.isSelectedDimension(1, 'key')).toBe(false);
+    });
+
+    it('should deselect an old dimension when the same dimension is chosen on a different subProp', function() {
+
+        //Select a dimension on a subProp of a dataField
+        scope.selectProperty(1);
+        scope.selectProperty(1, 'count');
+        scope.selectDimension(1, 'key', 'age', 'count');
+
+        //Selected the same dimension on a different subProp of a data field
+        scope.selectProperty(2);
+        scope.selectProperty(2, 'count');
+        scope.selectDimension(2, 'key', 'nationality', 'count');
+
+        //correct dataField and subProp added to dimensions object
+        expect(ctrl.dimensions.key).toEqual({name: 'nationality', groupingProperty: 'count'});
+        //correct selection class applied
+        expect(scope.isSelectedDimension(2, 'key', 'count')).toBe('key');
+        //old selection no longer selected
+        expect(scope.isSelectedDimension(1, 'key', 'count')).toBe(false);
     });
 
     xit('should forget the last property selected by the user if clicked again', function() {
